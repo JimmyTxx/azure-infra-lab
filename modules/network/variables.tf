@@ -34,6 +34,18 @@ variable "nsg_name" {
 }
 
 variable "ssh_source_address_prefix" {
-  description = "Source address allowed to access SSH"
+  description = "CIDR source address allowed to access SSH"
   type        = string
+
+  validation {
+    condition = (
+      can(cidrhost(var.ssh_source_address_prefix, 0)) &&
+      !contains(
+        ["0.0.0.0", "::/0"],
+        var.ssh_source_address_prefix
+      )
+    )
+
+    error_message = "SSH source must be a valid CIDR and must not allow the entire Internet."
+  }
 }
