@@ -1,7 +1,21 @@
+resource "azurerm_virtual_network" "this" {
+  name                = var.vnet_name
+  address_space       = var.vnet_address_space
+  location            = var.location
+  resource_group_name = var.resource_group_name
+}
+
+resource "azurerm_subnet" "web" {
+  name                 = var.subnet_name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.this.name
+  address_prefixes     = var.subnet_address_prefixes
+}
+
 resource "azurerm_network_security_group" "web" {
   name                = var.nsg_name
-  location            = azurerm_resource_group.lab.location
-  resource_group_name = azurerm_resource_group.lab.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
 
   security_rule {
     name                       = "Allow-SSH"

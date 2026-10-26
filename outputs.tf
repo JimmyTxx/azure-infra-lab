@@ -10,17 +10,17 @@ output "resource_group_location" {
 
 output "vnet_name" {
   description = "Name of the Azure Virtual Network"
-  value       = azurerm_virtual_network.lab.name
+  value       = module.network.vnet_name
 }
 
 output "subnet_name" {
   description = "Name of the Azure subnet"
-  value       = azurerm_subnet.web.name
+  value       = module.network.subnet_name
 }
 
 output "subnet_address_prefixes" {
   description = "Address prefixes of the Azure subnet"
-  value       = azurerm_subnet.web.address_prefixes
+  value       = module.network.subnet_address_prefixes
 }
 
 output "vm_name" {
