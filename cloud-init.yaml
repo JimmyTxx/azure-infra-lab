@@ -1,0 +1,25 @@
+#cloud-config
+
+package_update: true
+
+packages:
+ - nginx
+
+ write_files:
+  - path: /var/www/html/index.html
+  permissions: "0644"
+  content: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Azure Infra Lab</title>
+    </head>
+    <body>
+      <h1>Azure Infra Lab</h1>
+      <p>Deployed with Terraform and cloud-init.</p>
+    </body>
+    </html>
+
+runcmd:
+  - systemctl enable nginx
+  - systemctl restart nginx
