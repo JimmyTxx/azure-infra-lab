@@ -45,3 +45,39 @@ variable "ssh_source_address_prefix" {
   type        = string
   default     = "10.0.0.0/8"
 }
+
+variable "public_ip_name" {
+  description = "Name of the Public IP"
+  type        = string
+  default     = "pip-web"
+}
+
+variable "nic_name" {
+  description = "Name of the network interface"
+  type        = string
+  default     = "nic-web"
+}
+
+variable "vm_name" {
+  description = "Name of the Linux virtual machine"
+  type        = string
+  default     = "vm-web"
+}
+
+variable "vm_size" {
+  description = "Azure VM size"
+  type        = string
+  default     = "Standard_B1s"
+}
+
+variable "admin_username" {
+  description = "Administrator username for the linux VM"
+  type        = string
+  default     = "azureadmin"
+}
+
+variable "ssh_public_key_path" {
+  description = "Path to the SSH public key used by the Linux VM"
+  type        = string
+  default     = "~/.ssh/id_ed25519.pub"
+}
